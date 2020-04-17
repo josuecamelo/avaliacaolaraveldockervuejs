@@ -9,7 +9,7 @@ services:
       container_name: avaliacaodockerlaravelvuejs-mysql
       working_dir: /application
       volumes:
-        - .:/application
+        - ./avaliacaosell2brazil:/application
       environment:
         - MYSQL_ROOT_PASSWORD=root123
         - MYSQL_DATABASE=avaliacao
