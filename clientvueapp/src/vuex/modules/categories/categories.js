@@ -1,3 +1,5 @@
+import { BaseAxios } from '../../../config/configs'
+
 export default {
   state: {
     items: {
@@ -10,9 +12,8 @@ export default {
     }
   },
   actions: {
-    loadCategories (context, params) {
-      context.commit('PRELOADER', true)
-      this.$http.get('/api/v1/categories', {params})
+    loadCategories (context) {
+      BaseAxios.get('/api/v1/categories')
         .then(response => {
           console.log(response)
           context.commit('LOAD_CATEGORIES', response)
@@ -20,45 +21,41 @@ export default {
         .catch(errors => {
           console.log(errors)
         })
-        .finally(() => context.commit('PRELOADER', false))
+        // .finally(() => context.commit('PRELOADER', false))
     },
 
     loadCategory (context, id) {
-      context.commit('PRELOADER', true)
-
       return new Promise((resolve, reject) => {
-        this.$http.get(`/api/v1/categories/${id}`)
+        BaseAxios.get(`/api/v1/categories/${id}`)
           .then(response => resolve(response.data))
           .catch(error => reject(error))
-          .finally(() => context.commit('PRELOADER', false))
+          // .finally(() => context.commit('PRELOADER', false))
       })
     },
 
     storeCategory (context, params) {
-      context.commit('PRELOADER', true)
-
       return new Promise((resolve, reject) => {
-        this.$http.post('/api/v1/categories', params)
+        BaseAxios.post('/api/v1/categories', params)
           .then(response => resolve())
           .catch(error => reject(error))
-          .finally(() => context.commit('PRELOADER', false))
+          // .finally(() => context.commit('PRELOADER', false))
       })
     },
 
     updateCategory (context, params) {
       return new Promise((resolve, reject) => {
-        this.$http.put(`/api/v1/categories/${params.id}`, params)
+        BaseAxios.put(`/api/v1/categories/${params.id}`, params)
           .then(response => resolve())
           .catch(error => reject(error))
-          .finally(() => context.commit('PRELOADER', false))
+          // .finally(() => context.commit('PRELOADER', false))
       })
     },
 
     destroyCategory (context, id) {
-      context.commit('PRELOADER', true)
+      // context.commit('PRELOADER', true)
 
       return new Promise((resolve, reject) => {
-        this.$http.delete(`/api/v1/categories/${id}`)
+        BaseAxios.delete(`/api/v1/categories/${id}`)
           .then(response => resolve())
           .catch(error => reject(error))
         // .finally(() => context.commit('PRELOADER', false))

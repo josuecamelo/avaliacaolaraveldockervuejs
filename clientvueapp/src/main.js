@@ -6,14 +6,10 @@
 import Vue from 'vue'
 import router from './router'
 import store from './vuex/store'
-import axios from 'axios'
 
 Vue.config.productionTip = false
-const base = axios.create({
-  baseURL: 'http://localhost:8888/api/v1/'
-})
 
-Vue.prototype.$http = base
+store.dispatch('loadCategories')
 
 /* eslint-disable no-new */
 new Vue({
