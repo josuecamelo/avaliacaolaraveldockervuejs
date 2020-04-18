@@ -46,14 +46,12 @@ export default {
       return new Promise((resolve, reject) => {
         BaseAxios.put(`/api/v1/categories/${params.id}`, params)
           .then(response => resolve())
-          .catch(error => reject(error))
-          // .finally(() => context.commit('PRELOADER', false))
+          .catch(errors => reject(errors))
+          // .finally(() => context.commit('CHANGE_PRELOADER', false))
       })
     },
 
     destroyCategory (context, id) {
-      // context.commit('PRELOADER', true)
-
       return new Promise((resolve, reject) => {
         BaseAxios.delete(`/api/v1/categories/${id}`)
           .then(response => resolve())
