@@ -43,11 +43,11 @@ export default {
       const action = this.updating ? 'updateCategory' : 'storeCategory'
       this.$store.dispatch(action, this.category)
         .then(() => {
-          // this.$snotify.success('Sucesso ao enviar!')
+          alert('Sucesso ao enviar!')
           this.$router.push({name: 'admin.categories'})
         })
         .catch(errors => {
-          // this.$snotify.error('Algo Errado', 'Erro')
+          alert('Algo Errado: Não foi Possível Enviar o Registro')
           // this.errors = errors.data.errors
           console.log(errors)
         })

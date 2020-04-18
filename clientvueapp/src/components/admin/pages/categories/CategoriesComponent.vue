@@ -56,27 +56,20 @@ export default {
     },
 
     confirmDestroy (category) {
-      // this.$snotify.error(`Deseja realmente deletar a categoria: ${category.name}`, 'Deletar?', {
-      //   timout: 10000,
-      //   showProgressBar: true,
-      //   closeOnClick: true,
-      //   buttons: [
-      //     {text: 'Não', action: () => console.log('Não deletou...')},
-      //     {text: 'Sim', action: () => this.destroy(category)}
-      //   ]
-      // })
+      if (confirm(`Deseja realmente deletar a categoria: ${category.name}`)) {
+        this.destroy(category)
+      }
     },
 
     destroy (category) {
       this.$store.dispatch('destroyCategory', category.id)
         .then(() => {
-          // this.$snotify.success(`Sucesso ao deletar a categoria: ${category.name}`)
+          alert(`Sucesso ao deletar a categoria: ${category.name}`)
           this.loadCategories()
         })
         // eslint-disable-next-line handle-callback-err
         .catch(error => {
-          // console.log(error)
-          // this.$snotify.error('Erro ao deletar a categoria', 'Falha')
+          alert('Erro ao deletar a categoria')
         })
     }
   }

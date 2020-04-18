@@ -32,7 +32,7 @@ export default {
         })
         // eslint-disable-next-line handle-callback-err
         .catch(errors => {
-          // this.$snotify.error('Category não Encontrada')
+          alert('Category não Encontrada')
           this.$router.push({name: 'admin.categories'})
         })
     }
